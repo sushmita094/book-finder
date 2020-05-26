@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap");
+$dark: #171a16;
+$red: #a2291d;
+$green: #30411c;
+$yellow: #cd8630;
+$gray: #5f625f;
+$mediumGray: #bbbbbb;
+$lightGray: #e8e8e8;
+
+body {
+  font-family: "Merriweather", serif;
+  background-color: rgba($lightGray, 0.7);
+  color: $dark;
+}
+
+input,
+button {
+  font-family: "Merriweather", serif;
+}
+
+.inputWrapper {
+  .label {
+    display: block;
+  }
+}
+
+.mainScreen {
+  .heading {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .searchBarWrapper {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .searchBar {
+    display: inline-block;
+    background-color: white;
+    padding: 5px;
+    padding-left: 15px;
+    border-radius: 20px;
+
+    input {
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: $red;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 12px;
+    }
+  }
+
+  .results {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  .card {
+    background-color: white;
+    margin: 0 20px 35px;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: 3px 3px 7px rgba($mediumGray, 0.4);
+
+    .thumbnail {
+      height: 150px;
+      object-fit: contain;
+      margin-right: 15px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 15px;
+    }
+
+    .info {
+      font-size: 14px;
+      margin: 0 0 5px;
+      color: rgba($dark, 0.8);
+    }
+
+    .authors {
+      font-size: 14px;
+      margin: 0;
+      color: rgba($dark, 0.8);
+    }
+
+    .description {
+      font-size: 13px;
+      max-height: 50px;
+      overflow: hidden;
+      margin: 15px 0 0;
+      color: rgba($dark, 0.8);
+    }
+  }
+}
