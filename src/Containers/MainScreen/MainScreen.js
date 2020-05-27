@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Container from "./../../Components/Container/Container";
+import BookCard from "../../Components/BookCard/BookCard";
 
 const axios = require("axios");
 
@@ -56,29 +57,7 @@ class MainScreen extends Component {
           </div>
         </div>
         <div className="results">
-          {this.state.data.map((item) => (
-            <div className="card">
-              <img
-                className="thumbnail"
-                src={item.volumeInfo.imageLinks.thumbnail}
-              />
-              <div>
-                <p className="title">{item.volumeInfo.title}</p>
-                <p className="info">
-                  <span>{item.volumeInfo.publishedDate}</span>
-                  {" | "}
-                  <span>{item.volumeInfo.pageCount} pages</span>
-                </p>
-                <p className="authors">
-                  Authors:{" "}
-                  {item.volumeInfo.authors.map((author) => (
-                    <span>{author}</span>
-                  ))}
-                </p>
-                <p className="description">{item.volumeInfo.description}</p>
-              </div>
-            </div>
-          ))}
+          <BookCard />
         </div>
       </Container>
     );
