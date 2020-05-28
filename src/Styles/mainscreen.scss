@@ -8,8 +8,8 @@ $blue: #a9bcd0;
 
 body {
   font-family: "Raleway", sans-serif;
-  background-color: #ebf6fc;
-  color: $dark;
+  background-color: #fdfeff;
+  color: black;
 }
 
 input,
@@ -37,25 +37,14 @@ button {
   }
 
   .searchBar {
-    display: inline-block;
-    background-color: #dce4ec;
-    padding: 4px;
-    padding-left: 15px;
-    border-radius: 20px;
-
-    &:hover {
-      // background-color: #e3b5a4;
-
-      input {
-        // background-color: #e3b5a4;
-      }
-    }
-
     input {
-      border: none;
+      border: 1px solid rgba(#0d3b66, 0.3);
       font-weight: 600;
       letter-spacing: 0.6px;
-      background-color: #dce4ec;
+      background-color: white;
+      padding: 5px 10px;
+      height: 32px;
+      border-radius: 5px;
 
       &:focus {
         outline: none;
@@ -63,26 +52,31 @@ button {
     }
 
     button {
-      background-color: $primaryDark;
+      background-color: #db0f00;
       color: white;
       border: none;
-      border-radius: 20px;
+      border-radius: 5px;
       padding: 8px 18px;
       font-weight: 600;
       letter-spacing: 0.6px;
+      margin-left: 10px;
     }
   }
 
   .results {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+
+    @media (max-width: 576px) {
+      display: block;
+    }
   }
 
   .card {
     background-color: white;
     margin: 0 20px 35px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     box-shadow: 3px 3px 7px rgba(#bbb, 0.4);
 
@@ -93,7 +87,7 @@ button {
     }
 
     .title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       margin: 0 0 15px;
     }
@@ -102,14 +96,14 @@ button {
       font-size: 14px;
       font-weight: 500;
       margin: 0 0 5px;
-      color: rgba($dark, 0.8);
+      color: rgba(black, 0.8);
     }
 
     .authors {
       font-size: 14px;
       font-weight: 500;
       margin: 0;
-      color: rgba($dark, 0.8);
+      color: rgba(black, 0.8);
     }
 
     .description {
@@ -117,7 +111,7 @@ button {
       max-height: 50px;
       overflow: hidden;
       margin: 15px 0 0;
-      color: rgba($dark, 0.8);
+      color: rgba(black, 0.8);
     }
   }
 }

@@ -52,6 +52,7 @@ class MainScreen extends Component {
               placeholder="Search"
               onChange={(e) => this.handleInput(e.target)}
               value={this.state.inputValue}
+              required
             />
             <button onClick={() => this.handleBtnClick()}>Search</button>
           </div>

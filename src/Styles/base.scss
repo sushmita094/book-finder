@@ -14,4 +14,12 @@ code {
 
 .container {
   padding: 0 40px;
+
+  @media (max-width: 576px) {
+    padding: 0 20px;
+  }
+}
+
+* {
+  box-sizing: border-box;
 }
