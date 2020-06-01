@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
 
 $dark: #0a1128;
 
@@ -7,14 +7,14 @@ $primaryLight: #d8e1ff;
 $blue: #a9bcd0;
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   background-color: #fdfeff;
   color: black;
 }
 
 input,
 button {
-  font-family: "Raleway", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .inputWrapper {
@@ -24,6 +24,8 @@ button {
 }
 
 .mainScreen {
+  margin-bottom: 30px;
+
   .heading {
     text-align: center;
     font-size: 24px;
@@ -38,6 +40,7 @@ button {
 
   .searchBar {
     input {
+      font-size: 15px;
       border: 1px solid rgba(#0d3b66, 0.3);
       font-weight: 600;
       letter-spacing: 0.6px;
@@ -52,7 +55,8 @@ button {
     }
 
     button {
-      background-color: #db0f00;
+      background-color: #4d8f10;
+      cursor: pointer;
       color: white;
       border: none;
       border-radius: 5px;
@@ -60,6 +64,15 @@ button {
       font-weight: 600;
       letter-spacing: 0.6px;
       margin-left: 10px;
+      transition: all 0.4s ease-out;
+
+      &:hover {
+        background-color: #1d5a23;
+      }
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -73,23 +86,42 @@ button {
   }
 
   .card {
-    background-color: white;
+    background-color: rgba(#bbc8ce, 0.4);
     margin: 0 20px 35px;
     padding: 20px;
     border-radius: 10px;
     display: flex;
-    box-shadow: 3px 3px 7px rgba(#bbb, 0.4);
+
+    @media (max-width: 1024px) {
+      margin: 0 14px 28px;
+    }
+
+    @media (max-width: 767px) {
+      margin: 0 0 20px;
+    }
 
     .thumbnail {
       height: 150px;
       object-fit: contain;
       margin-right: 15px;
+
+      @media (max-width: 1024px) {
+        height: 130px;
+      }
+
+      @media (max-width: 767px) {
+        height: 120px;
+      }
     }
 
     .title {
       font-size: 20px;
       font-weight: 700;
       margin: 0 0 15px;
+
+      @media (max-width: 1024px) {
+        font-size: 18px;
+      }
     }
 
     .info {

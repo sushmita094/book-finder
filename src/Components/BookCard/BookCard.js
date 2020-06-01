@@ -1,18 +1,6 @@
 import React from "react";
 
-const data = [
-  {
-    volumeInfo: {
-      title: "Harry Potter and the Goblet of Fire",
-      publishedDate: "2001",
-      pageCount: "204",
-      authors: ["J K Rowling", "Dan Brown"],
-      description: "lorem ipsum description",
-    },
-  },
-];
-
-const BookCard = () => {
+const BookCard = ({ data }) => {
   return data.map((item) => (
     <div className="card">
       <img

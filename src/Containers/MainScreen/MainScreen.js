@@ -58,7 +58,7 @@ class MainScreen extends Component {
           </div>
         </div>
         <div className="results">
-          <BookCard />
+          <BookCard data={this.state.data} />
         </div>
       </Container>
     );
