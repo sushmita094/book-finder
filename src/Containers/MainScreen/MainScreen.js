@@ -28,17 +28,12 @@ class MainScreen extends Component {
       .get(`https://www.googleapis.com/books/v1/volumes?q=${queryValue}`)
       .then(function (response) {
         console.log(response);
-        console.log(response.data.items);
-        response.data.items.map((item) => console.log(item.volumeInfo));
         currentComponent.setState({
           data: response.data.items,
         });
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .then(function () {
-        // always executed
       });
   };
 
