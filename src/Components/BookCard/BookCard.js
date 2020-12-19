@@ -1,43 +1,43 @@
 import React from "react";
 
-const BookCard = ({ data }) => {
+import "./styles.scss";
+
+const BookCard = ({ item }) => {
   const truncateDesc = (desc) =>
     desc.length > 100 ? desc.substring(0, 150).concat("...") : desc;
 
+  const info = item.volumeInfo;
+
   return (
-    data &&
-    data.map((item) => (
-      <div className="card" key={data.id}>
-        <img
-          className="thumbnail"
-          src={
-            item.volumeInfo.hasOwnProperty("imageLinks")
-              ? item.volumeInfo.imageLinks.thumbnail
-              : null
-          }
-        />
-        <div>
-          <p className="title">{item.volumeInfo.title}</p>
-          <p className="info">
-            <span>{item.volumeInfo.publishedDate}</span>
-            {" | "}
-            <span>{item.volumeInfo.pageCount} pages</span>
-          </p>
-          <p className="authors">
-            {item.volumeInfo.authors &&
-              item.volumeInfo.authors.map((author, i) => (
-                <span key={i}>
-                  {author}
-                  {i !== item.volumeInfo.authors.length && ", "}
-                </span>
-              ))}
-          </p>
-          <p className="description">
-            {truncateDesc(item.volumeInfo.description)}
-          </p>
-        </div>
+    <div className="card" key={item.id}>
+      <img
+        className="thumbnail"
+        src={
+          info.hasOwnProperty("imageLinks") ? info.imageLinks.thumbnail : null
+        }
+        alt="book thumbnail"
+      />
+      <div>
+        <p className="title">{info.title}</p>
+        <p className="info">
+          <span>{info.publishedDate}</span>
+          {" | "}
+          <span>{info.pageCount} pages</span>
+        </p>
+        <p className="authors">
+          {info.authors &&
+            info.authors.map((author, i) => (
+              <span key={i}>
+                {author}
+                {i !== info.authors.length && ", "}
+              </span>
+            ))}
+        </p>
+        <p className="description">
+          {info.description && truncateDesc(info.description)}
+        </p>
       </div>
-    ))
+    </div>
   );
 };
 

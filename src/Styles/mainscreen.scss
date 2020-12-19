@@ -1,21 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
-
-$dark: #0a1128;
-
-$primaryDark: #0b3954;
-$primaryLight: #d8e1ff;
-$blue: #a9bcd0;
-
-body {
-  font-family: "Source Sans Pro", sans-serif;
-  background-color: #fdfeff;
-  color: black;
-}
-
-input,
-button {
-  font-family: "Source Sans Pro", sans-serif;
-}
+$shade-100: #141414;
+$shade-200: #333333;
+$shade-300: #525252;
+$shade-400: #666666;
+$shade-500: #7a7a7a;
+$shade-600: #999999;
+$shade-700: #b8b8b8;
+$shade-800: #d6d6d6;
+$shade-900: #f5f5f5;
 
 .inputWrapper {
   .label {
@@ -28,7 +19,8 @@ button {
 
   .heading {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 600;
     margin-top: 50px;
     margin-bottom: 30px;
   }
@@ -39,22 +31,23 @@ button {
   }
 
   .searchBar {
-    input {
+    .mainInput {
       font-size: 15px;
       border: 1px solid rgba(#0d3b66, 0.3);
-      font-weight: 600;
-      letter-spacing: 0.6px;
+      font-weight: 400;
+      // letter-spacing: 0.6px;
       background-color: white;
       padding: 5px 10px;
       height: 32px;
       border-radius: 5px;
+      width: 300px;
 
       &:focus {
         outline: none;
       }
     }
 
-    button {
+    .searchButton {
       background-color: #4d8f10;
       cursor: pointer;
       color: white;
@@ -82,68 +75,6 @@ button {
 
     @media (max-width: 576px) {
       display: block;
-    }
-  }
-
-  .card {
-    background-color: rgba(#bbc8ce, 0.4);
-    margin: 0 20px 35px;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-
-    @media (max-width: 1024px) {
-      margin: 0 14px 28px;
-    }
-
-    @media (max-width: 767px) {
-      margin: 0 0 20px;
-    }
-
-    .thumbnail {
-      height: 150px;
-      object-fit: contain;
-      margin-right: 15px;
-
-      @media (max-width: 1024px) {
-        height: 130px;
-      }
-
-      @media (max-width: 767px) {
-        height: 120px;
-      }
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 700;
-      margin: 0 0 15px;
-
-      @media (max-width: 1024px) {
-        font-size: 18px;
-      }
-    }
-
-    .info {
-      font-size: 14px;
-      font-weight: 500;
-      margin: 0 0 5px;
-      color: rgba(black, 0.8);
-    }
-
-    .authors {
-      font-size: 14px;
-      font-weight: 500;
-      margin: 0;
-      color: rgba(black, 0.8);
-    }
-
-    .description {
-      font-size: 14px;
-      max-height: 54px;
-      overflow: hidden;
-      margin: 15px 0 0;
-      color: rgba(black, 0.8);
     }
   }
 }

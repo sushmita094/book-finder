@@ -1,0 +1,61 @@
+.card {
+  display: flex;
+  margin: 0 20px 35px;
+  padding: 20px;
+
+  border-bottom: 1px solid black;
+
+  @media (max-width: 1024px) {
+    margin: 0 14px 28px;
+  }
+
+  @media (max-width: 767px) {
+    margin: 0 0 20px;
+  }
+
+  .thumbnail {
+    height: 150px;
+    object-fit: contain;
+    margin-right: 15px;
+
+    @media (max-width: 1024px) {
+      height: 130px;
+    }
+
+    @media (max-width: 767px) {
+      height: 120px;
+    }
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 15px;
+
+    @media (max-width: 1024px) {
+      font-size: 18px;
+    }
+  }
+
+  .info {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 5px;
+    color: rgba(black, 0.8);
+  }
+
+  .authors {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    color: rgba(black, 0.8);
+  }
+
+  .description {
+    font-size: 14px;
+    max-height: 54px;
+    overflow: hidden;
+    margin: 15px 0 0;
+    color: rgba(black, 0.8);
+  }
+}

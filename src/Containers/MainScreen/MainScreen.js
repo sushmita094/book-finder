@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+
 import Container from "./../../Components/Container/Container";
 import BookCard from "../../Components/BookCard/BookCard";
+import Form from "../../Components/Form/Form";
+
+import mockData from "../../Mocks/mockData";
 
 const axios = require("axios");
 
@@ -9,23 +13,42 @@ class MainScreen extends Component {
     super(props);
 
     this.state = {
-      inputValue: "",
-      data: [],
+      query: "",
+      sortBy: null,
+      printType: null,
+      data: mockData.items,
     };
   }
 
-  handleInput = (target) => {
+  handleInput = (value) => {
     this.setState({
-      inputValue: target.value,
+      query: value,
     });
   };
 
-  handleBtnClick = () => {
-    let queryValue = this.state.inputValue;
+  handleFilters = (label, value) => {
+    this.setState({
+      [label]: value,
+    });
+  };
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    let queryValue = this.state.query;
     let currentComponent = this;
 
+    let requestStr = `https://www.googleapis.com/books/v1/volumes?q=${queryValue}`;
+
+    if (this.state.sortBy) {
+      requestStr = requestStr.concat(`&orderBy=${this.state.sortBy}`);
+    }
+
+    if (this.state.printType) {
+      requestStr = requestStr.concat(`&printType=${this.state.printType}`);
+    }
+
     axios
-      .get(`https://www.googleapis.com/books/v1/volumes?q=${queryValue}`)
+      .get(requestStr)
       .then(function (response) {
         console.log(response);
         currentComponent.setState({
@@ -38,22 +61,24 @@ class MainScreen extends Component {
   };
 
   render() {
+    const { data, query } = this.state;
+
     return (
       <Container containerClass="mainScreen">
         <h1 className="heading">The Book Finder</h1>
         <div className="searchBarWrapper">
           <div className="searchBar">
-            <input
-              placeholder="Search"
-              onChange={(e) => this.handleInput(e.target)}
-              value={this.state.inputValue}
-              required
+            <Form
+              query={query}
+              handleInput={this.handleInput}
+              handleFilters={this.handleFilters}
+              handleFormSubmit={this.handleFormSubmit}
             />
-            <button onClick={() => this.handleBtnClick()}>Search</button>
           </div>
         </div>
+
         <div className="results">
-          <BookCard data={this.state.data} />
+          {data && data.map((item) => <BookCard item={item} />)}
         </div>
       </Container>
     );

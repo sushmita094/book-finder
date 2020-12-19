@@ -1,0 +1,33 @@
+.dropdown {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-right: 24px;
+  }
+
+  .dropdownButton {
+    height: 36px;
+    padding: 0 16px;
+    background-color: #222;
+    color: white;
+    border: 1px solid black;
+
+    &:hover {
+      ~ .dropdownWrapper {
+        display: block;
+      }
+    }
+  }
+
+  .dropdownWrapper {
+    display: none;
+    position: absolute;
+    top: 36px;
+    background-color: white;
+    border: 1px solid black;
+
+    &:hover {
+      display: block;
+    }
+  }
+}
