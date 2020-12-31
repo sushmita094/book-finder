@@ -3,8 +3,6 @@
   margin: 0 20px 35px;
   padding: 20px;
 
-  border-bottom: 1px solid black;
-
   @media (max-width: 1024px) {
     margin: 0 14px 28px;
   }
@@ -28,9 +26,16 @@
   }
 
   .title {
+    display: inline-block;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     margin: 0 0 15px;
+    color: #111;
+    text-decoration: none;
+
+    &:hover {
+      color: orangered;
+    }
 
     @media (max-width: 1024px) {
       font-size: 18px;
@@ -39,16 +44,16 @@
 
   .info {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0 0 5px;
-    color: rgba(black, 0.8);
+    color: rgba(black, 0.7);
   }
 
   .authors {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0;
-    color: rgba(black, 0.8);
+    color: rgba(black, 0.7);
   }
 
   .description {
@@ -56,6 +61,18 @@
     max-height: 54px;
     overflow: hidden;
     margin: 15px 0 0;
-    color: rgba(black, 0.8);
+    color: rgba(black, 0.7);
+  }
+
+  .categories {
+    color: rgba(black, 0.7);
+    font-size: 14px;
+    margin: 0px;
+  }
+
+  .publisher {
+    font-size: 14px;
+    color: rgba(black, 0.7);
+    margin: 8px 0px 0px;
   }
 }

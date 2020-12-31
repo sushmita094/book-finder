@@ -18,24 +18,40 @@ const BookCard = ({ item }) => {
         alt="book thumbnail"
       />
       <div>
-        <p className="title">{info.title}</p>
+        <a href={info.canonicalVolumeLink} className="title" target="_blank">
+          {info.title}
+        </a>
         <p className="info">
           <span>{info.publishedDate}</span>
           {" | "}
           <span>{info.pageCount} pages</span>
         </p>
         <p className="authors">
+          By{" "}
           {info.authors &&
             info.authors.map((author, i) => (
               <span key={i}>
                 {author}
-                {i !== info.authors.length && ", "}
+                {i !== info.authors.length - 1 && ", "}
               </span>
+            ))}
+        </p>
+        <p className="publisher">{info.publisher && info.publisher}</p>
+        <p className="categories">
+          {info.categories &&
+            info.categories.map((category, i) => (
+              <span key={i}>{category}</span>
             ))}
         </p>
         <p className="description">
           {info.description && truncateDesc(info.description)}
         </p>
+
+        {info.previewLink && (
+          <a target="_blank" href={info.previewLink}>
+            Preview
+          </a>
+        )}
       </div>
     </div>
   );

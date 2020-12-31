@@ -1,5 +1,7 @@
 import React from "react";
 
+import caretIcon from "../../Assets/caret-down.svg";
+
 import "./styles.scss";
 
 const DropdownInput = ({ buttonText, data, handleFilters }) => {
@@ -7,6 +9,7 @@ const DropdownInput = ({ buttonText, data, handleFilters }) => {
     <div className="dropdown">
       <button className="dropdownButton" type="button">
         {buttonText}
+        <img className="caret" src={caretIcon} alt="open dropdown" />
       </button>
 
       <div className={"dropdownWrapper"}>
@@ -15,6 +18,7 @@ const DropdownInput = ({ buttonText, data, handleFilters }) => {
             <button
               key={option.id}
               type="button"
+              className="item"
               onClick={() => handleFilters(data.title, option.label)}
             >
               {option.name}

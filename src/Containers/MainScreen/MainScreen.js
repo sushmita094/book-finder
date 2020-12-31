@@ -61,7 +61,7 @@ class MainScreen extends Component {
   };
 
   render() {
-    const { data, query } = this.state;
+    const { data, query, sortBy, printType } = this.state;
 
     return (
       <Container containerClass="mainScreen">
@@ -73,6 +73,8 @@ class MainScreen extends Component {
               handleInput={this.handleInput}
               handleFilters={this.handleFilters}
               handleFormSubmit={this.handleFormSubmit}
+              sortBy={sortBy}
+              printType={printType}
             />
           </div>
         </div>

@@ -41,7 +41,14 @@ const printOptions = {
   ],
 };
 
-const Form = ({ query, handleInput, handleFilters, handleFormSubmit }) => {
+const Form = ({
+  query,
+  handleInput,
+  handleFilters,
+  handleFormSubmit,
+  sortBy,
+  printType,
+}) => {
   return (
     <form>
       <input
@@ -59,6 +66,12 @@ const Form = ({ query, handleInput, handleFilters, handleFormSubmit }) => {
       >
         Search
       </button>
+
+      <div>
+        <span>Applied filters:</span>
+        <span>{sortBy && sortBy}</span>
+        <span>{printType && printType}</span>
+      </div>
 
       <div className="optionsWrapper">
         <DropdownInput
