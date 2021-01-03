@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+
+  .button {
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid #333;
+    margin-right: 8px;
+
+    &.active {
+      background-color: #4d8f10;
+      border-color: #4d8f10;
+      color: white;
+    }
+  }
+}

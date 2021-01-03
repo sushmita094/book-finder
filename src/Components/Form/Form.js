@@ -2,44 +2,9 @@ import React from "react";
 
 import DropdownInput from "../DropdownInput/DropdownInput";
 
+import { sortOptions, printOptions } from "../../Constants/filters";
+
 import "./styles.scss";
-
-const sortOptions = {
-  title: "sortBy",
-  options: [
-    {
-      id: 1,
-      name: "Relevance",
-      label: "relevance",
-    },
-    {
-      id: 2,
-      name: "Newest",
-      label: "newest",
-    },
-  ],
-};
-
-const printOptions = {
-  title: "printType",
-  options: [
-    {
-      id: 1,
-      name: "All",
-      label: "all",
-    },
-    {
-      id: 2,
-      name: "Books",
-      label: "books",
-    },
-    {
-      id: 3,
-      name: "Magazines",
-      label: "magazines",
-    },
-  ],
-};
 
 const Form = ({
   query,
@@ -67,35 +32,32 @@ const Form = ({
         Search
       </button>
 
-      <div>
-        <span>Applied filters:</span>
-        <span>{sortBy && sortBy}</span>
-        <span>{printType && printType}</span>
-      </div>
-
       <div className="optionsWrapper">
         <DropdownInput
           buttonText="Sort by"
           data={sortOptions}
           handleFilters={handleFilters}
+          selectedOption={sortBy}
         />
 
         <DropdownInput
           buttonText="Print type"
           data={printOptions}
           handleFilters={handleFilters}
+          selectedOption={printType}
         />
 
-        {/* <div className="dropdown">
-          <button className="dropdownButton" type="button">
-            Filter
-          </button>
-
-          <div className={"dropdownWrapper"}>
-            <div>Free Ebooks</div>
-            <div>Paid Ebooks</div>
-          </div>
-        </div> */}
+        <label htmlFor="downloadFormat" className="downloadSelector">
+          <input
+            type="checkbox"
+            id="downloadFormat"
+            name="downloadFormat"
+            value="Bike"
+          />
+          <span className="customCheckbox" />
+          Downloadable as EPUB
+        </label>
+        <br></br>
       </div>
     </form>
   );

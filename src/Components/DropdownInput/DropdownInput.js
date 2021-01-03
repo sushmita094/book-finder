@@ -1,14 +1,18 @@
 import React from "react";
+import classnames from "classnames";
 
 import caretIcon from "../../Assets/caret-down.svg";
 
 import "./styles.scss";
 
-const DropdownInput = ({ buttonText, data, handleFilters }) => {
+const DropdownInput = ({ buttonText, data, handleFilters, selectedOption }) => {
+  let selectedName = data.options.find((item) => item.id === selectedOption)
+    .name;
+
   return (
     <div className="dropdown">
       <button className="dropdownButton" type="button">
-        {buttonText}
+        {buttonText} {selectedName}
         <img className="caret" src={caretIcon} alt="open dropdown" />
       </button>
 
@@ -18,8 +22,11 @@ const DropdownInput = ({ buttonText, data, handleFilters }) => {
             <button
               key={option.id}
               type="button"
-              className="item"
-              onClick={() => handleFilters(data.title, option.label)}
+              className={classnames(
+                "item",
+                option.id === selectedOption && "itemSelected"
+              )}
+              onClick={() => handleFilters(data.title, option.id)}
             >
               {option.name}
             </button>

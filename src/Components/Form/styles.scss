@@ -1,4 +1,28 @@
 .optionsWrapper {
   margin-top: 24px;
   display: flex;
+
+  .downloadSelector {
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+
+    input {
+      display: none;
+    }
+
+    .customCheckbox {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    input:checked ~ .customCheckbox {
+      background-color: blue;
+    }
+  }
 }

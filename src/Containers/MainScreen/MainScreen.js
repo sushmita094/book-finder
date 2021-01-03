@@ -3,10 +3,15 @@ import React, { Component } from "react";
 import Container from "./../../Components/Container/Container";
 import BookCard from "../../Components/BookCard/BookCard";
 import Form from "../../Components/Form/Form";
+import Pagination from "../../Components/Pagination/Pagination";
 
 import mockData from "../../Mocks/mockData";
 
 const axios = require("axios");
+
+const pageCountArray = [10, 20, 30, 40];
+
+const currentPageArray = [1, 2, 3];
 
 class MainScreen extends Component {
   constructor(props) {
@@ -14,9 +19,11 @@ class MainScreen extends Component {
 
     this.state = {
       query: "",
-      sortBy: null,
-      printType: null,
+      sortBy: 1,
+      printType: 1,
       data: mockData.items,
+      perPage: 10,
+      currentPage: 1,
     };
   }
 
@@ -29,6 +36,12 @@ class MainScreen extends Component {
   handleFilters = (label, value) => {
     this.setState({
       [label]: value,
+    });
+  };
+
+  handlePerPageCount = (value) => {
+    this.setState({
+      perPage: value,
     });
   };
 
@@ -61,7 +74,7 @@ class MainScreen extends Component {
   };
 
   render() {
-    const { data, query, sortBy, printType } = this.state;
+    const { data, query, sortBy, printType, perPage, currentPage } = this.state;
 
     return (
       <Container containerClass="mainScreen">
@@ -82,6 +95,14 @@ class MainScreen extends Component {
         <div className="results">
           {data && data.map((item) => <BookCard item={item} />)}
         </div>
+
+        <Pagination
+          pageCountArray={pageCountArray}
+          perPage={perPage}
+          handlePerPageCount={this.handlePerPageCount}
+          currentPageArray={currentPageArray}
+          currentPage={currentPage}
+        />
       </Container>
     );
   }

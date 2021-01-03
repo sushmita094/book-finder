@@ -56,12 +56,24 @@
       padding: 0 12px;
       text-align: left;
 
+      &.itemSelected {
+        background-color: yellow;
+      }
+
       &:hover {
         background-color: rgba(black, 0.1);
       }
 
       &:focus {
         outline: none;
+      }
+
+      &:first-child {
+        border-radius: 4px 4px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 4px 4px;
       }
     }
   }

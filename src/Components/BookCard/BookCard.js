@@ -18,7 +18,12 @@ const BookCard = ({ item }) => {
         alt="book thumbnail"
       />
       <div>
-        <a href={info.canonicalVolumeLink} className="title" target="_blank">
+        <a
+          href={info.canonicalVolumeLink}
+          className="title"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {info.title}
         </a>
         <p className="info">
@@ -48,7 +53,7 @@ const BookCard = ({ item }) => {
         </p>
 
         {info.previewLink && (
-          <a target="_blank" href={info.previewLink}>
+          <a target="_blank" href={info.previewLink} rel="noopener noreferrer">
             Preview
           </a>
         )}
