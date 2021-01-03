@@ -9,11 +9,17 @@ const Pagination = ({
   handlePerPageCount,
   currentPageArray,
   currentPage,
+  handleCurrentPage,
+  handlePrevNextPage,
 }) => {
   return (
     <div className="pagination">
       <div>
-        <button type="button" className={"button"}>
+        <button
+          type="button"
+          className={"button"}
+          onClick={() => handlePrevNextPage("prev")}
+        >
           Prev
         </button>
 
@@ -23,17 +29,22 @@ const Pagination = ({
               key={item}
               type="button"
               className={classnames("button", currentPage === item && "active")}
+              onClick={() => handleCurrentPage(item)}
             >
               {item}
             </button>
           ))}
 
-        <button type="button" className={"button"}>
+        <button
+          type="button"
+          className={"button"}
+          onClick={() => handlePrevNextPage("next")}
+        >
           Next
         </button>
       </div>
 
-      <div className="">
+      <div className="perPageWrapper">
         {pageCountArray &&
           pageCountArray.map((item, i) => (
             <button

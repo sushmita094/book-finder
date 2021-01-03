@@ -34,3 +34,34 @@ export const printOptions = {
     },
   ],
 };
+
+export const filterOptions = {
+  title: "filterOption",
+  options: [
+    {
+      id: 1,
+      name: "Partial",
+      label: "partial",
+    },
+    {
+      id: 2,
+      name: "Full",
+      label: "full",
+    },
+    {
+      id: 3,
+      name: "Free Ebooks",
+      label: "free-ebooks",
+    },
+    {
+      id: 4,
+      name: "Paid Ebooks",
+      label: "paid-ebooks",
+    },
+    {
+      id: 5,
+      name: "Ebooks",
+      label: "ebooks",
+    },
+  ],
+};

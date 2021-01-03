@@ -6,13 +6,19 @@ import caretIcon from "../../Assets/caret-down.svg";
 import "./styles.scss";
 
 const DropdownInput = ({ buttonText, data, handleFilters, selectedOption }) => {
-  let selectedName = data.options.find((item) => item.id === selectedOption)
-    .name;
+  let selectedName = "Select";
+  if (selectedOption) {
+    selectedName = data.options.find((item) => item.id === selectedOption).name;
+  }
+
+  // let selectedName = data.options
+  //   ? data.options.find((item) => item.id === selectedOption).name
+  //   : "Select";
 
   return (
     <div className="dropdown">
       <button className="dropdownButton" type="button">
-        {buttonText} {selectedName}
+        {buttonText} <span className="name">{selectedName}</span>
         <img className="caret" src={caretIcon} alt="open dropdown" />
       </button>
 

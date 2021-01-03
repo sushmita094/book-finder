@@ -1,3 +1,5 @@
+@import "../../Styles/colors.scss";
+
 .dropdown {
   position: relative;
 
@@ -5,11 +7,19 @@
     margin-right: 24px;
   }
 
+  @media (max-width: 768px) {
+    text-align: left;
+
+    &:not(:last-child) {
+      margin-right: 0px;
+    }
+  }
+
   .dropdownButton {
     height: 36px;
     padding: 0 16px;
     background-color: transparent;
-    color: #111;
+    color: $shade-100;
     border: 0;
     border-radius: 4px;
     text-align: left;
@@ -22,8 +32,13 @@
       }
     }
 
+    .name {
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
     .caret {
-      height: 12px;
+      height: 10px;
       object-fit: contain;
       margin-left: 8px;
       opacity: 0.8;
@@ -34,12 +49,13 @@
   .dropdownWrapper {
     display: none;
     position: absolute;
+    z-index: 1;
     top: 36px;
     background-color: white;
     flex-direction: column;
     flex-wrap: nowrap;
     border-radius: 4px;
-    box-shadow: 0 1px 1px 1px rgba(black, 0.2);
+    box-shadow: 0 1px 1px 1px $shade-800;
     min-width: 90px;
 
     &:hover {
@@ -57,11 +73,11 @@
       text-align: left;
 
       &.itemSelected {
-        background-color: yellow;
+        background-color: $primary-light;
       }
 
       &:hover {
-        background-color: rgba(black, 0.1);
+        background-color: $shade-900;
       }
 
       &:focus {

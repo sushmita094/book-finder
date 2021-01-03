@@ -1,3 +1,5 @@
+@import "../../Styles/colors.scss";
+
 .card {
   display: flex;
   margin: 0 20px 35px;
@@ -5,6 +7,7 @@
 
   @media (max-width: 1024px) {
     margin: 0 14px 28px;
+    padding: 20px 0px;
   }
 
   @media (max-width: 767px) {
@@ -29,12 +32,12 @@
     display: inline-block;
     font-size: 20px;
     font-weight: 600;
-    margin: 0 0 15px;
-    color: #111;
+    margin: 0 0 4px;
+    color: $shade-100;
     text-decoration: none;
 
     &:hover {
-      color: orangered;
+      color: $primary;
     }
 
     @media (max-width: 1024px) {
@@ -45,15 +48,35 @@
   .info {
     font-size: 14px;
     font-weight: 600;
-    margin: 0 0 5px;
-    color: rgba(black, 0.7);
+    margin: 0 0 12px;
+    color: $shade-200;
   }
 
-  .authors {
+  .pages,
+  .publisher,
+  .categories {
+    font-size: 14px;
+    color: $shade-200;
+    margin: 0px 0px 2px;
+  }
+
+  .previewLink {
+    color: $primary;
     font-size: 14px;
     font-weight: 600;
-    margin: 0;
-    color: rgba(black, 0.7);
+    text-decoration: none;
+
+    .previewButton {
+      display: inline-flex;
+      height: 32px;
+      border: 1px solid $primary;
+      justify-content: center;
+      align-items: center;
+      padding: 0 12px;
+      text-decoration: none;
+      border-radius: 0px;
+      margin-top: 12px;
+    }
   }
 
   .description {
@@ -61,18 +84,6 @@
     max-height: 54px;
     overflow: hidden;
     margin: 15px 0 0;
-    color: rgba(black, 0.7);
-  }
-
-  .categories {
-    color: rgba(black, 0.7);
-    font-size: 14px;
-    margin: 0px;
-  }
-
-  .publisher {
-    font-size: 14px;
-    color: rgba(black, 0.7);
-    margin: 8px 0px 0px;
+    color: $shade-500;
   }
 }

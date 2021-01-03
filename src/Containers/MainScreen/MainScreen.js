@@ -5,7 +5,13 @@ import BookCard from "../../Components/BookCard/BookCard";
 import Form from "../../Components/Form/Form";
 import Pagination from "../../Components/Pagination/Pagination";
 
-import mockData from "../../Mocks/mockData";
+import {
+  sortOptions,
+  printOptions,
+  filterOptions,
+} from "../../Constants/filters";
+
+// import mockData from "../../Mocks/mockData";
 
 const axios = require("axios");
 
@@ -21,9 +27,11 @@ class MainScreen extends Component {
       query: "",
       sortBy: 1,
       printType: 1,
-      data: mockData.items,
+      filterOption: null,
+      data: null,
       perPage: 10,
       currentPage: 1,
+      downloadFormat: null,
     };
   }
 
@@ -34,30 +42,115 @@ class MainScreen extends Component {
   };
 
   handleFilters = (label, value) => {
-    this.setState({
-      [label]: value,
-    });
+    this.setState(
+      {
+        [label]: value,
+      },
+      () => {
+        this.callApi();
+      }
+    );
   };
 
   handlePerPageCount = (value) => {
-    this.setState({
-      perPage: value,
-    });
+    this.setState(
+      {
+        perPage: value,
+      },
+      () => {
+        this.callApi();
+      }
+    );
   };
 
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    let queryValue = this.state.query;
+  handleCurrentPage = (value) => {
+    this.setState(
+      {
+        currentPage: value,
+      },
+      () => {
+        this.callApi();
+      }
+    );
+  };
+
+  handlePrevNextPage = (value) => {
+    if (value === "prev") {
+      this.setState(
+        (prevState) => ({
+          currentPage: prevState.currentPage - 1,
+        }),
+        () => {
+          this.callApi();
+        }
+      );
+    } else {
+      this.setState(
+        (prevState) => ({
+          currentPage: prevState.currentPage + 1,
+        }),
+        () => {
+          this.callApi();
+        }
+      );
+    }
+  };
+
+  handleDownloadFormat = () => {
+    this.setState(
+      (prevState) => ({
+        downloadFormat: prevState.downloadFormat ? null : "epub",
+      }),
+      () => {
+        this.callApi();
+      }
+    );
+  };
+
+  callApi = () => {
+    let {
+      query: queryValue,
+      sortBy,
+      printType,
+      filterOption,
+      perPage,
+      currentPage,
+      downloadFormat,
+    } = this.state;
     let currentComponent = this;
 
     let requestStr = `https://www.googleapis.com/books/v1/volumes?q=${queryValue}`;
 
-    if (this.state.sortBy) {
-      requestStr = requestStr.concat(`&orderBy=${this.state.sortBy}`);
+    if (sortBy) {
+      let selected = sortOptions.options.find((item) => item.id === sortBy)
+        .label;
+      requestStr = requestStr.concat(`&orderBy=${selected}`);
     }
 
-    if (this.state.printType) {
-      requestStr = requestStr.concat(`&printType=${this.state.printType}`);
+    if (printType) {
+      let selected = printOptions.options.find((item) => item.id === printType)
+        .label;
+      requestStr = requestStr.concat(`&printType=${selected}`);
+    }
+
+    if (filterOption) {
+      let selected = filterOptions.options.find(
+        (item) => item.id === filterOption
+      ).label;
+      requestStr = requestStr.concat(`&filter=${selected}`);
+    }
+
+    if (perPage) {
+      requestStr = requestStr.concat(`&maxResults=${perPage}`);
+    }
+
+    if (currentPage) {
+      let startIndex = perPage * (currentPage - 1);
+      requestStr = requestStr.concat(`&startIndex=${startIndex}`);
+    }
+
+    if (downloadFormat) {
+      requestStr = requestStr.concat("&download=epub");
     }
 
     axios
@@ -73,8 +166,22 @@ class MainScreen extends Component {
       });
   };
 
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    this.callApi();
+  };
+
   render() {
-    const { data, query, sortBy, printType, perPage, currentPage } = this.state;
+    const {
+      data,
+      query,
+      sortBy,
+      printType,
+      perPage,
+      currentPage,
+      filterOption,
+      downloadFormat,
+    } = this.state;
 
     return (
       <Container containerClass="mainScreen">
@@ -88,6 +195,9 @@ class MainScreen extends Component {
               handleFormSubmit={this.handleFormSubmit}
               sortBy={sortBy}
               printType={printType}
+              filterOption={filterOption}
+              downloadFormat={downloadFormat}
+              handleDownloadFormat={this.handleDownloadFormat}
             />
           </div>
         </div>
@@ -102,6 +212,8 @@ class MainScreen extends Component {
           handlePerPageCount={this.handlePerPageCount}
           currentPageArray={currentPageArray}
           currentPage={currentPage}
+          handleCurrentPage={this.handleCurrentPage}
+          handlePrevNextPage={this.handlePrevNextPage}
         />
       </Container>
     );

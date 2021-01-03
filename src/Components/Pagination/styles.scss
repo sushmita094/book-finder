@@ -1,18 +1,40 @@
+@import "../../Styles/colors.scss";
+
 .pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .button {
+    cursor: pointer;
     border-radius: 4px;
     background-color: white;
-    border: 1px solid #333;
+    border: 1px solid $shade-200;
     margin-right: 8px;
 
     &.active {
-      background-color: #4d8f10;
-      border-color: #4d8f10;
+      background-color: #39d0b2;
+      border-color: #39d0b2;
       color: white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .perPageWrapper {
+    @media (max-width: 768px) {
+      margin-top: 24px;
     }
   }
 }

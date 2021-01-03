@@ -2,7 +2,13 @@ import React from "react";
 
 import DropdownInput from "../DropdownInput/DropdownInput";
 
-import { sortOptions, printOptions } from "../../Constants/filters";
+import {
+  sortOptions,
+  printOptions,
+  filterOptions,
+} from "../../Constants/filters";
+
+import checkIcon from "../../Assets/check.svg";
 
 import "./styles.scss";
 
@@ -13,24 +19,29 @@ const Form = ({
   handleFormSubmit,
   sortBy,
   printType,
+  filterOption,
+  downloadFormat,
+  handleDownloadFormat,
 }) => {
   return (
     <form>
-      <input
-        value={query}
-        onChange={(e) => handleInput(e.target.value)}
-        className="mainInput"
-        placeholder="Search"
-        required
-      />
+      <div className="inputButtonWrapper">
+        <input
+          value={query}
+          onChange={(e) => handleInput(e.target.value)}
+          className="mainInput"
+          placeholder="Search"
+          required
+        />
 
-      <button
-        className="searchButton"
-        type="button"
-        onClick={(e) => handleFormSubmit(e)}
-      >
-        Search
-      </button>
+        <button
+          className="searchButton"
+          type="button"
+          onClick={(e) => handleFormSubmit(e)}
+        >
+          Search
+        </button>
+      </div>
 
       <div className="optionsWrapper">
         <DropdownInput
@@ -47,14 +58,25 @@ const Form = ({
           selectedOption={printType}
         />
 
+        <DropdownInput
+          buttonText="Filter by"
+          data={filterOptions}
+          handleFilters={handleFilters}
+          selectedOption={filterOption}
+        />
+
         <label htmlFor="downloadFormat" className="downloadSelector">
           <input
             type="checkbox"
             id="downloadFormat"
             name="downloadFormat"
             value="Bike"
+            checked={downloadFormat}
+            onClick={handleDownloadFormat}
           />
-          <span className="customCheckbox" />
+          <span className="customCheckbox">
+            <img src={checkIcon} alt="downloadable" />
+          </span>
           Downloadable as EPUB
         </label>
         <br></br>
