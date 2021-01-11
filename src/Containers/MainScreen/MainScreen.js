@@ -185,7 +185,7 @@ class MainScreen extends Component {
 
     return (
       <Container containerClass="mainScreen">
-        <h1 className="heading">The Book Finder</h1>
+        <h1 className="heading">Bookipedia</h1>
         <div className="searchBarWrapper">
           <div className="searchBar">
             <Form
