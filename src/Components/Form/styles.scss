@@ -3,6 +3,7 @@
 .optionsWrapper {
   margin-top: 24px;
   display: flex;
+  column-gap: 16px;
 
   @media (max-width: 768px) {
     margin-top: 16px;
@@ -11,7 +12,7 @@
 
   .downloadSelector {
     position: relative;
-    padding-left: 20px;
+    padding: 0 8px;
     display: flex;
     align-items: center;
     font-size: 14px;

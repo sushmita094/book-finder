@@ -6,6 +6,7 @@ import {
   sortOptions,
   printOptions,
   filterOptions,
+  perPageOptions,
 } from "../../Constants/filters";
 
 import checkIcon from "../../Assets/check.svg";
@@ -20,6 +21,7 @@ const Form = ({
   sortBy,
   printType,
   filterOption,
+  perPageOption,
   downloadFormat,
   handleDownloadFormat,
 }) => {
@@ -36,7 +38,6 @@ const Form = ({
 
         <button
           className="searchButton"
-          type="button"
           onClick={(e) => handleFormSubmit(e)}
           disabled={query.length === 0}
         >
@@ -64,6 +65,13 @@ const Form = ({
           data={filterOptions}
           handleFilters={handleFilters}
           selectedOption={filterOption}
+        />
+
+        <DropdownInput
+          buttonText="Per Page"
+          data={perPageOptions}
+          handleFilters={handleFilters}
+          selectedOption={perPageOption}
         />
 
         <label htmlFor="downloadFormat" className="downloadSelector">

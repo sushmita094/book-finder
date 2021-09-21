@@ -8,12 +8,9 @@ import "./styles.scss";
 const DropdownInput = ({ buttonText, data, handleFilters, selectedOption }) => {
   let selectedName = "Select";
   if (selectedOption) {
+    // console.log(data.options);
     selectedName = data.options.find((item) => item.id === selectedOption).name;
   }
-
-  // let selectedName = data.options
-  //   ? data.options.find((item) => item.id === selectedOption).name
-  //   : "Select";
 
   return (
     <div className="dropdown">

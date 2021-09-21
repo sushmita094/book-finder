@@ -40,12 +40,9 @@ const BookCard = ({ item }) => {
           <span>|</span> <span>{info.publishedDate}</span>
         </p>
 
-        <p className="pages">Pages: {info.pageCount}</p>
-
-        <p className="publisher">Publisher: {info.publisher}</p>
-
+        <p className="publisher">Published by {info.publisher}</p>
+        <p className="pages">{info.pageCount} pages</p>
         <p className="categories">
-          Subject:{" "}
           {info.categories &&
             info.categories.map((category, i) => (
               <span key={i}>{category}</span>

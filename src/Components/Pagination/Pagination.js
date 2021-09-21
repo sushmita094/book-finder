@@ -4,9 +4,6 @@ import classnames from "classnames";
 import "./styles.scss";
 
 const Pagination = ({
-  pageCountArray,
-  perPage,
-  handlePerPageCount,
   currentPageArray,
   currentPage,
   handleCurrentPage,
@@ -42,21 +39,6 @@ const Pagination = ({
         >
           Next
         </button>
-      </div>
-
-      <div className="perPageWrapper">
-        {pageCountArray &&
-          pageCountArray.map((item, i) => (
-            <button
-              key={i}
-              type="button"
-              className={classnames("button", perPage === item && "active")}
-              onClick={() => handlePerPageCount(item)}
-            >
-              {item}
-            </button>
-          ))}
-        <span>Per page</span>
       </div>
     </div>
   );

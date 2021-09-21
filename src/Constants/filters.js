@@ -65,3 +65,29 @@ export const filterOptions = {
     },
   ],
 };
+
+export const perPageOptions = {
+  title: "perPage",
+  options: [
+    {
+      id: 1,
+      name: "10",
+      label: 10,
+    },
+    {
+      id: 2,
+      name: "20",
+      label: 20,
+    },
+    {
+      id: 3,
+      name: "30",
+      label: 30,
+    },
+    {
+      id: 4,
+      name: "40",
+      label: 40,
+    },
+  ],
+};

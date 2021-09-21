@@ -9,13 +9,12 @@ import {
   sortOptions,
   printOptions,
   filterOptions,
+  perPageOptions,
 } from "../../Constants/filters";
 
 // import mockData from "../../Mocks/mockData";
 
 const axios = require("axios");
-
-const pageCountArray = [10, 20, 30, 40];
 
 const currentPageArray = [1, 2, 3];
 
@@ -29,9 +28,11 @@ class MainScreen extends Component {
       printType: 1,
       filterOption: null,
       data: null,
-      perPage: 10,
+      perPage: 1,
       currentPage: 1,
       downloadFormat: null,
+      isFetching: false,
+      totalItems: null,
     };
   }
 
@@ -45,17 +46,6 @@ class MainScreen extends Component {
     this.setState(
       {
         [label]: value,
-      },
-      () => {
-        this.callApi();
-      }
-    );
-  };
-
-  handlePerPageCount = (value) => {
-    this.setState(
-      {
-        perPage: value,
       },
       () => {
         this.callApi();
@@ -108,6 +98,9 @@ class MainScreen extends Component {
   };
 
   callApi = () => {
+    this.setState({
+      isFetching: true,
+    });
     let {
       query: queryValue,
       sortBy,
@@ -122,14 +115,16 @@ class MainScreen extends Component {
     let requestStr = `https://www.googleapis.com/books/v1/volumes?q=${queryValue}`;
 
     if (sortBy) {
-      let selected = sortOptions.options.find((item) => item.id === sortBy)
-        .label;
+      let selected = sortOptions.options.find(
+        (item) => item.id === sortBy
+      ).label;
       requestStr = requestStr.concat(`&orderBy=${selected}`);
     }
 
     if (printType) {
-      let selected = printOptions.options.find((item) => item.id === printType)
-        .label;
+      let selected = printOptions.options.find(
+        (item) => item.id === printType
+      ).label;
       requestStr = requestStr.concat(`&printType=${selected}`);
     }
 
@@ -141,7 +136,10 @@ class MainScreen extends Component {
     }
 
     if (perPage) {
-      requestStr = requestStr.concat(`&maxResults=${perPage}`);
+      let selected = perPageOptions.options.find(
+        (item) => item.id === perPage
+      ).label;
+      requestStr = requestStr.concat(`&maxResults=${selected}`);
     }
 
     if (currentPage) {
@@ -159,10 +157,16 @@ class MainScreen extends Component {
         console.log(response);
         currentComponent.setState({
           data: response.data.items,
+          totalItems: response.data.totalItems,
         });
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .then(() => {
+        this.setState({
+          isFetching: false,
+        });
       });
   };
 
@@ -181,6 +185,8 @@ class MainScreen extends Component {
       currentPage,
       filterOption,
       downloadFormat,
+      isFetching,
+      totalItems,
     } = this.state;
 
     return (
@@ -196,25 +202,37 @@ class MainScreen extends Component {
               sortBy={sortBy}
               printType={printType}
               filterOption={filterOption}
+              perPageOption={perPage}
               downloadFormat={downloadFormat}
               handleDownloadFormat={this.handleDownloadFormat}
             />
           </div>
         </div>
 
-        <div className="results">
-          {data && data.map((item) => <BookCard item={item} />)}
-        </div>
+        {isFetching ? (
+          <div className="loader-wrapper">
+            <div className="loader">
+              <span className="dot dot-1"></span>
+              <span className="dot dot-2"></span>
+              <span className="dot dot-3"></span>
+            </div>
+          </div>
+        ) : totalItems === 0 ? (
+          <div>No results found</div>
+        ) : (
+          <div className="results">
+            {data && data.map((item) => <BookCard item={item} key={item.id} />)}
+          </div>
+        )}
 
-        <Pagination
-          pageCountArray={pageCountArray}
-          perPage={perPage}
-          handlePerPageCount={this.handlePerPageCount}
-          currentPageArray={currentPageArray}
-          currentPage={currentPage}
-          handleCurrentPage={this.handleCurrentPage}
-          handlePrevNextPage={this.handlePrevNextPage}
-        />
+        {data && (
+          <Pagination
+            currentPageArray={currentPageArray}
+            currentPage={currentPage}
+            handleCurrentPage={this.handleCurrentPage}
+            handlePrevNextPage={this.handlePrevNextPage}
+          />
+        )}
       </Container>
     );
   }
