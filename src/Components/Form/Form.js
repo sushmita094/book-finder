@@ -38,6 +38,7 @@ const Form = ({
           className="searchButton"
           type="button"
           onClick={(e) => handleFormSubmit(e)}
+          disabled={query.length === 0}
         >
           Search
         </button>

@@ -55,6 +55,11 @@
       &:focus {
         outline: none;
       }
+
+      &:disabled {
+        background-color: rgba($primary, 0.5);
+        pointer-events: none;
+      }
     }
   }
 
