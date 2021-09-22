@@ -140,6 +140,7 @@ class MainScreen extends Component {
         (item) => item.id === perPage
       ).label;
       requestStr = requestStr.concat(`&maxResults=${selected}`);
+      this.setState({ currentPage: 1 });
     }
 
     if (currentPage) {
